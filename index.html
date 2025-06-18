@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Paediatric Emergency Tools</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f8fb; color: #333; }
+    h1, h2 { color: #0275d8; }
+    .section { margin-bottom: 40px; }
+    footer { text-align: center; font-size: 14px; margin-top: 50px; color: #777; }
+    .gcs { background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #ccc; max-width: 600px; margin: auto; }
+    .gcs h2 { font-size: 20px; margin-bottom: 10px; }
+    .gcs table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .gcs th, .gcs td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <h1>Paediatric Emergency Tools</h1>
+
+  <div class="section">
+    <h2>🧮 Dose Calculator</h2>
+    <p>Enter weight (kg): <input type="number" id="weight" /> <button onclick="calculateDose()">Calculate</button></p>
+    <div id="dose-result"></div>
+  </div>
+
+  <div class="section">
+    <h2>💧 Fluid Calculator</h2>
+    <p>Enter weight (kg): <input type="number" id="fluid-weight" /> <button onclick="calculateFluid()">Calculate</button></p>
+    <div id="fluid-result"></div>
+  </div>
+
+  <div class="section gcs">
+    <h2>GCS</h2>
+    <table>
+      <tr><th>الاستجابة</th><th>الدرجة</th></tr>
+      <tr><td>يفتح العين تلقائيًا</td><td>4</td></tr>
+      <tr><td>يفتح العين عند الصوت</td><td>3</td></tr>
+      <tr><td>يفتح العين عند الألم</td><td>2</td></tr>
+      <tr><td>لا يفتح العين</td><td>1</td></tr>
+    </table>
+  </div>
+
+  <footer>
+    تم بواسطة: د. عبدالوهاب عبد المنان الشيخ – طبيب طوارئ أطفال، طموح طبيب أسرة<br/>
+    مطور تطبيق Paediatric Emergency Tools
+  </footer>
+
+  <script>
+    function calculateDose() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      if (isNaN(weight)) return alert("أدخل الوزن");
+      const dose = 15 * weight;
+      const ml = (dose * 5) / 120;
+      document.getElementById('dose-result').innerHTML = `Paracetamol Dose: ${dose} mg ≈ ${ml.toFixed(2)} ml (120mg/5ml)`;
+    }
+
+    function calculateFluid() {
+      const w = parseFloat(document.getElementById('fluid-weight').value);
+      if (isNaN(w)) return alert("أدخل الوزن");
+      let maintenance = 0;
+      if (w <= 10) maintenance = w * 100;
+      else if (w <= 20) maintenance = 1000 + (w - 10) * 50;
+      else maintenance = 1500 + (w - 20) * 20;
+      const perHour = maintenance / 24;
+      document.getElementById('fluid-result').innerHTML = `Maintenance: ${maintenance} ml/day ≈ ${perHour.toFixed(2)} ml/hour`;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "maintenance": "100ml/kg for first 10kg, 50ml/kg for next 10kg, 20ml/kg for remaining",
+  "bolus": "20 ml/kg NS or RL over 15-30 min",
+  "deficit": {
+    "5%": "50 ml/kg",
+    "7%": "70 ml/kg",
+    "10%": "100 ml/kg"
+  }
+}

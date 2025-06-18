@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Paracetamol",
+    "brand": [
+      "Panadol",
+      "Fevadol"
+    ],
+    "concentration": "120mg/5ml",
+    "dosePerKg": "15 mg/kg",
+    "route": "PO",
+    "warning": "Max 60 mg/kg/day"
+  },
+  {
+    "name": "Ibuprofen",
+    "brand": [
+      "Brufen",
+      "Advil"
+    ],
+    "concentration": "100mg/5ml",
+    "dosePerKg": "10 mg/kg",
+    "route": "PO",
+    "warning": "Avoid under 6 months"
+  }
+]
