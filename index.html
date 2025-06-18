@@ -1,73 +1,96 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Paediatric Emergency Tools</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f8fb; color: #333; }
-    h1, h2 { color: #0275d8; }
-    .section { margin-bottom: 40px; }
-    footer { text-align: center; font-size: 14px; margin-top: 50px; color: #777; }
-    .gcs { background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #ccc; max-width: 600px; margin: auto; }
-    .gcs h2 { font-size: 20px; margin-bottom: 10px; }
-    .gcs table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    .gcs th, .gcs td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <header>
+    <h1>Paediatric Emergency Tools</h1>
+    <nav>
+      <a href="#calculators">Calculators</a>
+      <a href="#meds">Emergency Meds</a>
+      <a href="#algorithms">Algorithms</a>
+      <a href="#critical">Critical Cases</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
 
-  <h1>Paediatric Emergency Tools</h1>
+  <section id="calculators">
+    <h2>🧮 Drug Dose Calculator</h2>
+    <form id="dose-form">
+      <label for="weight">Patient Weight (kg):</label>
+      <input type="number" id="weight" required>
+      <label for="drug">Select Drug:</label>
+      <select id="drug">
+        <option value="paracetamol">Paracetamol (15 mg/kg)</option>
+        <option value="ibuprofen">Ibuprofen (10 mg/kg)</option>
+        <option value="ceftriaxone">Ceftriaxone (50 mg/kg)</option>
+        <option value="diazepam">Diazepam (0.3 mg/kg)</option>
+        <option value="adrenaline">Adrenaline (0.01 mg/kg)</option>
+      </select>
+      <button type="submit">Calculate</button>
+    </form>
+    <div id="result"></div>
+  </section>
 
-  <div class="section">
-    <h2>🧮 Dose Calculator</h2>
-    <p>Enter weight (kg): <input type="number" id="weight" /> <button onclick="calculateDose()">Calculate</button></p>
-    <div id="dose-result"></div>
+  <section id="meds">
+    <h2>💊 Emergency Medications</h2>
+    <div id="med-list"></div>
+  </section>
+
+  
+<section id="algorithms">
+  <h2>📋 Algorithms</h2>
+  <div class="card">
+    <h3>Status Epilepticus Algorithm 🔄</h3>
+    <ol>
+      <li><strong>0–5 min:</strong> ABCs, O2, IV/IO access, check glucose.</li>
+      <li><strong>5–10 min:</strong> Benzodiazepine:<br>
+          • Diazepam 0.3 mg/kg IV (max 10 mg) OR<br>
+          • Midazolam 0.2 mg/kg IM/intranasal</li>
+      <li><strong>10–20 min:</strong> Repeat benzodiazepine if seizures persist.</li>
+      <li><strong>20–40 min:</strong> Load with:<br>
+          • Levetiracetam 40 mg/kg IV (max 3 g) OR<br>
+          • Phenytoin/Fosphenytoin 20 mg PE/kg IV</li>
+      <li><strong>40–60 min:</strong> If seizure continues, prepare for intubation + continuous infusion (Midazolam, Propofol).</li>
+      <li><em>Call ICU / Neurology.</em></li>
+    </ol>
+    <p dir="rtl"><strong>ملاحظات:</strong> تحقق من نسبة السكر، استبعد نقص الكالسيوم، وحافظ على الأكسجة.</p>
   </div>
+</section>
 
-  <div class="section">
-    <h2>💧 Fluid Calculator</h2>
-    <p>Enter weight (kg): <input type="number" id="fluid-weight" /> <button onclick="calculateFluid()">Calculate</button></p>
-    <div id="fluid-result"></div>
-  </div>
 
-  <div class="section gcs">
-    <h2>GCS</h2>
-    <table>
-      <tr><th>الاستجابة</th><th>الدرجة</th></tr>
-      <tr><td>يفتح العين تلقائيًا</td><td>4</td></tr>
-      <tr><td>يفتح العين عند الصوت</td><td>3</td></tr>
-      <tr><td>يفتح العين عند الألم</td><td>2</td></tr>
-      <tr><td>لا يفتح العين</td><td>1</td></tr>
-    </table>
-  </div>
+  <section id="critical">
+    <h2>🧯 Critical Cases</h2>
+    <p>🚧 Coming Soon: Shock, Status Epilepticus, Severe Asthma...</p>
+  </section>
 
-  <footer>
-    تم بواسطة: د. عبدالوهاب عبد المنان الشيخ – طبيب طوارئ أطفال، طموح طبيب أسرة<br/>
-    مطور تطبيق Paediatric Emergency Tools
-  </footer>
+  
+<section id="fluids">
+  <h2>💧 Fluid Calculator</h2>
+  <form id="fluid-form">
+    <label for="fluid-weight">Patient Weight (kg):</label>
+    <input type="number" id="fluid-weight" required>
+    <button type="submit">Calculate Fluids</button>
+  </form>
+  <div id="fluid-result"></div>
+</section>
 
-  <script>
-    function calculateDose() {
-      const weight = parseFloat(document.getElementById('weight').value);
-      if (isNaN(weight)) return alert("أدخل الوزن");
-      const dose = 15 * weight;
-      const ml = (dose * 5) / 120;
-      document.getElementById('dose-result').innerHTML = `Paracetamol Dose: ${dose} mg ≈ ${ml.toFixed(2)} ml (120mg/5ml)`;
-    }
-
-    function calculateFluid() {
-      const w = parseFloat(document.getElementById('fluid-weight').value);
-      if (isNaN(w)) return alert("أدخل الوزن");
-      let maintenance = 0;
-      if (w <= 10) maintenance = w * 100;
-      else if (w <= 20) maintenance = 1000 + (w - 10) * 50;
-      else maintenance = 1500 + (w - 20) * 20;
-      const perHour = maintenance / 24;
-      document.getElementById('fluid-result').innerHTML = `Maintenance: ${maintenance} ml/day ≈ ${perHour.toFixed(2)} ml/hour`;
-    }
-  </script>
-
+<section id="about" dir="rtl">
+    <h2>حول التطبيق</h2>
+    <p><strong>تم بواسطة:</strong><br>
+    د. عبدالوهاب عبد المنان الشيخ<br>
+    طبيب طوارئ أطفال – طموح طبيب أسرة<br><br>
+    <strong>مطور تطبيق Paediatric Emergency Tools</strong><br><br>
+    <strong>المراجع العلمية:</strong><br>
+    UpToDate<br>
+    BMJ<br>
+    AMBOSS<br>
+    Saudi Guidelines<br>
+    Medscape</p>
+  </section>
 </body>
 </html>
